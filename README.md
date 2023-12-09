@@ -1,7 +1,7 @@
 # Wasteer Task
 This repository is created for the technical interview for Wasteer. The task description is as follows: 
 
-In this README.md you will find the solutions steps that were taken while solving the problems in the given task. 
+In this README.md you will find the solutions steps that were taken while solving the problems in the given task. I wanted to avoid spagetti code, therefore, I tried to use OOP paradigm as much as possible. However, since the task requires a demo for the fps most of the solution consists of Python scripts. 
 
 ### Steps:
 
@@ -9,6 +9,7 @@ In this README.md you will find the solutions steps that were taken while solvin
 2. Fine-Tuning
 3. Performance Test
 4. Improving FPS
+5. Future Work
 
 ## 1. Research:
 The initial step I take when starting an CV assignment is to understand the task by analyzing the dataset and research for the existing work. 
@@ -43,3 +44,24 @@ The performance of the fine-tuned model and pre-trained model are as follows:
 | left baz      | right baz     |
 
 ## 4. Improving FPS:
+FPS is very important when it comes to the real-time scenarios. One of the most popular way to improve FPS of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here the fps results for M2 CPU, V100GPU and finally onnxruntime. 
+
+### For M2 CPU
+| model  | fps |
+| ------ |:-------------:|
+| .pt    | 14.351     |
+| .onnx  | 26.189     |
+| .half_onnx | 26.752     |
+
+### For V100 GPU
+| model  | fps |
+| ------ |:-------------:|
+| .pt    | 41.290     |
+| .onnx  | 42.469     |
+| .half_onnx | 42.510     |
+
+### For onnxruntime on V100 GPU
+| model  | fps |
+| ------ |:-------------:|
+| .onnx  | 168.785  |
+| .half_onnx | 245.743 |
