@@ -23,7 +23,7 @@ When I start looking for wooded pallet detection, I found a pre-trained weights 
     <img src="/images/sample_2.png" width="400">
 </p>
 
-As it can be seen from the sample images the model detected also other classes such as forklift and person. 
+As it can be seen from the sample images, the model detected also other classes such as forklift and person. 
 
 
 ## 2. Fine-Tuning:
@@ -36,14 +36,14 @@ I used the pre-trained weighs and started a short training for 50 epocs. Followi
 3. **Fine-tuning**: The distribution of the Wood Pallet class differs significantly from the original dataset, therefore, fine-tuning was essential.
 
 ## 3. Performance Test:
-The performance of the fine-tuned model and pre-trained model are as follows:
+The performance of the pre-trained and fine-tuned model are as follows:
 | model    | Precision | Recall | mAP |
 | -------- |:---------:| :------:| :------:|
 | pre-trained| right fo| right fo| right fo|
 | fine-tuned | right ba| right fo| right fo|
 
 ## 4. Improving FPS:
-FPS is very important when it comes to the real-time scenarios. One of the most popular way to improve FPS of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here the fps results for M2 CPU, V100GPU and finally onnxruntime. 
+FPS is very important when it comes to the real-life scenarios. One of the most popular way to improve FPS of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here, the fps results for M2 CPU, V100GPU and finally onnxruntime. 
 
 ### M2 CPU
 | model  | fps |
@@ -69,3 +69,12 @@ FPS is very important when it comes to the real-time scenarios. One of the most 
     <img src="/images/onnx.png" width="400">
     <img src="/images/onnx_half.png" width="400">
 </p>
+
+## 5. Future Work:
+The following can be done as a future work for fps improvement while maintaining accuracy: 
+1. Implementing NVIDIA DALI for pre-processing can enhance FPS by offloading data augmentation tasks to the GPU, reducing CPU overhead.
+2. Exploring alternative inferencing technologies, such as TensorRT or OpenVINO, may optimize model execution and improve overall inference speed.
+3. Incorporating angle-aware object detection techniques can enhance accuracy in detecting pallets, potentially improving model performance.
+4. Implementing dynamic batching during inference can optimize resource utilization, leading to improved throughput without sacrificing accuracy.
+5. Evaluating smaller YOLO variants for object detection may result in faster inference speeds while maintaining acceptable accuracy levels.
+6. Investigating CPU-specific optimizations, such as OpenBLAS or MKL, can potentially improve inference speed on CPU-based systems.
