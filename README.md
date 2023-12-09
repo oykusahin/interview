@@ -37,11 +37,10 @@ I used the pre-trained weighs and started a short training for 50 epocs. Followi
 
 ## 3. Performance Test:
 The performance of the fine-tuned model and pre-trained model are as follows:
-| Left columns  | Right columns |
-| ------------- |:-------------:|
-| left foo      | right foo     |
-| left bar      | right bar     |
-| left baz      | right baz     |
+| model    | Precision | Recall | mAP |
+| -------- |:---------:| :------:| :------:|
+| pre-trained| right fo| right fo| right fo|
+| fine-tuned | right ba| right fo| right fo|
 
 ## 4. Improving FPS:
 FPS is very important when it comes to the real-time scenarios. One of the most popular way to improve FPS of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here the fps results for M2 CPU, V100GPU and finally onnxruntime. 
