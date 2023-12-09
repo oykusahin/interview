@@ -12,7 +12,8 @@ model = YOLO(path + 'roboflow_best.pt')
  Data augmentation: please check the data augmentation hyperparameters from the wooden_pallets.yaml file
  The best training result will be used as fine-tuned model for the rest of the task. 
 """
-model.train(data='wooden_pallets.yaml', epochs=50, device='0', imgsz=640, batch=32, plots=True)
+model.train(data='wooden_pallets.yaml', epochs=50, device='mps', imgsz=640, batch=32, plots=True)
+model.export(format='onnx')
 
 """
  It is also important to validate the fine-tuned model.
