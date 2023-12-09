@@ -1,3 +1,4 @@
 /pallets/*
 /runs/*
 *.pt
+*.onnx
