@@ -17,8 +17,8 @@ When I analyze the data.yaml file, I saw that there were only one class that is 
 
 When I start looking for wooded pallet detection, I found a pre-trained weights for yolov8 from Roboflow web-site: https://blog.roboflow.com/logistics-object-detection-model/ . When I test the pretrained model I saw that it was working fine but still need some fine-tuning. Sample results from the pre-trained model:
 
-![Sample 1.](/images/sample_1.png =100x20)
-![Sample 2.](/images/sample_2.png =100x20)
+<img src="/images/sample_1.png" width="200">
+<img src="/images/sample_2.png" width="200">
 
 As it can be seen from the sample images the model detected also other classes such as forklift and person. 
 
