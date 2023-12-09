@@ -1,6 +1,10 @@
 # Wasteer Task
 This repository is created for the technical interview for Wasteer. The task description is as follows: 
 
+- Develop and demonstrate a real-time pallet detection system using the provided dataset.
+- Balance the model’s speed and accuracy, with an emphasis on achieving high fps.
+- Document your approach and any challenges faced.
+
 In this README.md you will find the solutions steps that were taken while solving the problems in the given task. I wanted to avoid spagetti code, therefore, I tried to use OOP paradigm as much as possible. However, since the task requires a demo for the fps most of the solution consists of Python scripts. 
 
 ### Steps:
