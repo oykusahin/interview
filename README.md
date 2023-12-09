@@ -30,8 +30,16 @@ I used the pre-trained weighs and started a short training for 50 epocs. Followi
 ![Training metrics.](/images/results.png "This image shows the training metrics.")
 
 ### There were three main reasons behind training the model again:
-1. Having an end-to-end model for specific class: The pre-trained model has 20 classes and wooden pallets was one of them. Therefore, the output may need more post-processing to obtain specific class. Also, the loss function may focus on other classes during backpropogating which means there is a small possibility of imroving the performance for only one class.
-2. Data Augmentation: The number of training data will be more in numbers because of adding data augmentation. ultralytics's mosaic augmentation known one of the most helpful one. So, I used it as well as the classical ones. 
-3. Fine-tuning: the distribution of the Wood Pallet class differs significantly from the original dataset, therefore, fine-tuning was essential.
+1.  **Having an end-to-end model for specific class:** The pre-trained model has 20 classes and wooden pallets was one of them. Therefore, the output may need more post-processing to obtain specific class. Also, the loss function may focus on other classes during backpropogating which means there is a small possibility of imroving the performance for only one class.
+2. **Data augmentation**: The number of training data will be more in numbers because of adding data augmentation. ultralytics's mosaic augmentation known one of the most helpful one. So, I used it as well as the classical ones. 
+3. **Fine-tuning**: The distribution of the Wood Pallet class differs significantly from the original dataset, therefore, fine-tuning was essential.
 
 ## 3. Performance Test:
+The performance of the fine-tuned model and pre-trained model are as follows:
+| Left columns  | Right columns |
+| ------------- |:-------------:|
+| left foo      | right foo     |
+| left bar      | right bar     |
+| left baz      | right baz     |
+
+## 4. Improving FPS:
