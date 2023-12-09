@@ -1,0 +1,6 @@
+train: /Users/oyku/Documents/Projects/interview/pallets/train/
+val: /Users/oyku/Documents/Projects/interview/pallets/valid/
+test: /Users/oyku/Documents/Projects/interview/pallets/test/
+
+nc: 1
+names: ['pallet']
