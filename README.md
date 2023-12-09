@@ -45,22 +45,27 @@ The performance of the fine-tuned model and pre-trained model are as follows:
 ## 4. Improving FPS:
 FPS is very important when it comes to the real-time scenarios. One of the most popular way to improve FPS of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here the fps results for M2 CPU, V100GPU and finally onnxruntime. 
 
-### For M2 CPU
+### M2 CPU
 | model  | fps |
 | ------ |:-------------:|
 | .pt    | 14.351     |
 | .onnx  | 26.189     |
 | .half_onnx | 26.752     |
 
-### For V100 GPU
+### V100 GPU
 | model  | fps |
 | ------ |:-------------:|
 | .pt    | 41.290     |
 | .onnx  | 42.469     |
 | .half_onnx | 42.510     |
 
-### For onnxruntime on V100 GPU
+### onnxruntime on V100 GPU
 | model  | fps |
 | ------ |:-------------:|
-| .onnx  | 168.785  |
-| .half_onnx | 245.743 |
+| .onnx  | 151.273  |
+| .half_onnx | 154.142 |
+
+<p float="left">
+    <img src="/images/onnx.png" width="400">
+    <img src="/images/onnx_half.png" width="400">
+</p>
