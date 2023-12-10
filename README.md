@@ -52,6 +52,8 @@ dataset = project.version(2).download("TYPE_NAME")
 !python main.py
 ```
 
+# Conceptual Approach
+
 ### Steps:
 
 1. Research
