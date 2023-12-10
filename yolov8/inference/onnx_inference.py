@@ -1,42 +1,38 @@
 import onnxruntime
 import numpy as np
-from PIL import Image
 import time
 
-path = '/content/drive/MyDrive/YOLOv8'
-onnx_model_path = path + '/runs/detect/train5/weights/best.onnx'
+class OnnxInference:
+    def __init__(self, onnx_model_path, test_images_folder, num_batches):
+        self.session_options = onnxruntime.SessionOptions()
+        self.session_options.graph_optimization_level = onnxruntime.GraphOptimizationLevel.ORT_ENABLE_ALL
+        self.session = onnxruntime.InferenceSession(onnx_model_path, session_options=self.session_options)
 
-session_options = onnxruntime.SessionOptions()
-session_options.graph_optimization_level = onnxruntime.GraphOptimizationLevel.ORT_ENABLE_ALL
-session = onnxruntime.InferenceSession(onnx_model_path, session_options=session_options)
+        self.test_images_folder = test_images_folder
+        self.num_batches = num_batches
 
-test_images_folder = test_images_folder = path + '/test/images/'
+        # Initialize dummy images (replace with actual loading logic)
+        self.dummy_images = [np.random.rand(320, 320, 3).astype(np.float32) for _ in range(1)]
 
-dummy_images = []
-for i in range(1):
-    dummy_image = np.random.rand(320, 320, 3).astype(np.float32)  # Replace with actual image loading
-    dummy_images.append(dummy_image)
+        # Convert the list of images to a 4D NumPy array
+        self.input_images = np.array(self.dummy_images)
 
-# Convert the list of images to a 4D NumPy array
-input_images = np.array(dummy_images)
+        # ONNX Runtime expects input shape (batch_size, channels, height, width)
+        self.input_images = np.transpose(self.input_images, (0, 3, 1, 2))
 
-# ONNX Runtime expects input shape (batch_size, channels, height, width)
-input_images = np.transpose(input_images, (0, 3, 1, 2))
+        # Move the model to GPU (if not already)
+        self.session.set_providers(['CUDAExecutionProvider'])
 
-# Move the model to GPU (if not already)
-session.set_providers(['CUDAExecutionProvider'])
+    def run_inference(self):
+        input_name = self.session.get_inputs()[0].name
 
-# Perform inference and measure FPS
-input_name = session.get_inputs()[0].name
+        start_time = time.time()
 
-num_batches = 763 
-start_time = time.time()
+        for _ in range(self.num_batches):
+            outputs = self.session.run([], {input_name: self.input_images})
 
-for _ in range(num_batches):
-    outputs = session.run([], {input_name: input_images})
+        end_time = time.time()
+        elapsed_time = end_time - start_time
 
-end_time = time.time()
-elapsed_time = end_time - start_time
-
-fps = num_batches / elapsed_time
-print(f"FPS: {fps}")
+        fps = self.num_batches / elapsed_time
+        return fps
