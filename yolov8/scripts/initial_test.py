@@ -1,9 +1,8 @@
 import os
-import metrics
 
 from ultralytics import YOLO
 from modify_folder import process_files_in_folder
-
+from metrics import YoloMetricsCalculator
 
 # Path for the project directory
 path = '/Users/oyku/Documents/Projects/interview/'
@@ -41,4 +40,9 @@ if not os.path.exists(prediction_path):
 """
  Now, the predicted dataset can be easily used to measure the performance of the Roboflow model.
 """
-metrics()
+ground_truth_path = '/Users/oyku/Documents/Projects/interview/pallets/test/labels'
+predicted_path = '/Users/oyku/Documents/Projects/interview/runs/detect/initial_results/labels'
+class_label = 0
+
+metrics_calculator = YoloMetricsCalculator(ground_truth_path, predicted_path, class_label)
+metrics_calculator.calculate_and_print_metrics()
