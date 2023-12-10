@@ -21,7 +21,7 @@ def calculate_accuracy():
     print("Calculating accuracy...")
     
     model_path = PATH + '/models/half_long_fine_tuned.onnx'
-    test_images = PATH + '/data/wooden_pallets.yaml'
+    test_images = PATH + '/wooden_pallets.yaml'
     
     # Load a model
     model = YOLO(model_path)  # load a custom model
@@ -36,7 +36,7 @@ def calculate_accuracy():
 def calculate_fps():
     print("Calculating frames per second...")
     
-    model_path = PATH + '/models/best.onnx'
+    model_path = PATH + '/models/half_long_fine_tuned.onnx'
     test_images = PATH + '/pallets/test/images/'
     num_batches = count_files_in_folder(test_images)
 
