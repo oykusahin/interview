@@ -26,13 +26,13 @@ drive.mount('/content/drive')
 %pip install -r requirements.txt  # install
 ```
 
-5. Check if the requirements were successfully installed.
+4. Check if the requirements were successfully installed.
 ```
 import ultralytics
 ultralytics.checks()
 ```
 
-6. Install the dataset.
+5. Install the dataset.
 ```
 !pip install roboflow
 
@@ -42,12 +42,12 @@ project = rf.workspace(COMPANY_NAME).project(PROJECT_NAME)
 dataset = project.version(2).download("TYPE_NAME")
 ```
 
-7. Make sure you are using GPU.
+6. Make sure you are using GPU.
 ```
 !nvidia-smi
 ```
 
-8. Run the code for simple demo.
+7. Run the code for simple demo.
 ```
 !python main.py
 ```
