@@ -12,7 +12,7 @@ class OnnxInference:
         self.num_batches = num_batches
 
         # Initialize dummy images (replace with actual loading logic)
-        self.dummy_images = [np.random.rand(320, 320, 3).astype(np.float32) for _ in range(1)]
+        self.dummy_images = [np.random.rand(640, 640, 3).astype(np.float32) for _ in range(1)]
 
         # Convert the list of images to a 4D NumPy array
         self.input_images = np.array(self.dummy_images)

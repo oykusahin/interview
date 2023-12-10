@@ -1,7 +1,7 @@
-path:   
-train: /pallets/train/
-val: /pallets/valid/
-test: /pallets/test/
+path:  ../dataset/ 
+train: train/
+val: test/
+test: #/dataset/test/
 
 nc: 1
 names: ['pallet']
