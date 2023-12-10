@@ -45,6 +45,7 @@ def calculate_fps():
     print(f"FPS: {fps_result}")
 
 def main():
+    
     while True:
         user_choice = input("Enter 'acc' for accuracy, 'fps' for frames per second, or 'exit' to quit: ").lower()
 
@@ -53,7 +54,7 @@ def main():
         elif user_choice == 'fps':
             calculate_fps()
         elif user_choice == 'exit':
-            print("Exiting the program.")
+            print("Exiting the demo.")
             break
         else:
             print("Invalid choice. Please enter 'acc', 'fps', or 'exit'.")

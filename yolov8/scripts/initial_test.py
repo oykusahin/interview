@@ -1,18 +1,18 @@
 import os
 
 from ultralytics import YOLO
-from modify_folder import process_files_in_folder
-from metrics import YoloMetricsCalculator
+from yolov8.scripts.modify_folder import process_files_in_folder
+from yolov8.scripts.metrics import YoloMetricsCalculator
 
 # Path for the project directory
-path = '/Users/oyku/Documents/Projects/interview/'
+PATH = os.getcwd()
 
 """
  Load the YOLO model from Roboflow. 
  The model was trained for Logistics and includes wooded pallet class.
  Therefore, I tought I can be good point to start.
 """
-model = YOLO(path + 'roboflow_best.pt')
+model = YOLO(PATH + 'roboflow_best.pt')
 
 """
  Predict the test dataset on model without any fine-tuning or adjustment.
@@ -21,7 +21,7 @@ model = YOLO(path + 'roboflow_best.pt')
 """
 prediction_path = '/runs/detect/initial_results/labels'
 if not os.path.exists(prediction_path):
-    source = path+'pallets/test/images/'
+    source = PATH + 'pallets/test/images/'
     model.predict(source, save=True, imgsz=640, batch=16, conf=0.5, plots=True, classes=[19], save_txt=True)
 
 """
@@ -34,14 +34,14 @@ if not os.path.exists(prediction_path):
  The following script changes the class names from 19 to 0 
 """
 if not os.path.exists(prediction_path):
-    folder_path = path + prediction_path
+    folder_path = PATH + prediction_path
     process_files_in_folder(folder_path)
 
 """
  Now, the predicted dataset can be easily used to measure the performance of the Roboflow model.
 """
-ground_truth_path = '/Users/oyku/Documents/Projects/interview/pallets/test/labels'
-predicted_path = '/Users/oyku/Documents/Projects/interview/runs/detect/initial_results/labels'
+ground_truth_path = PATH + '/pallets/test/labels'
+predicted_path = PATH + '/runs/detect/initial_results/labels'
 class_label = 0
 
 metrics_calculator = YoloMetricsCalculator(ground_truth_path, predicted_path, class_label)

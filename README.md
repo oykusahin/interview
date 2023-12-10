@@ -5,7 +5,52 @@ This repository is created for Wasteer's technical interview. The task descripti
 - Balance the model’s speed and accuracy, with an emphasis on achieving high fps.
 - Document your approach and any challenges faced.
 
-In this README.md you will find the solutions steps that were taken while solving the given problems in the task. I wanted to avoid spagetti code, therefore, I tried to use OOP paradigm as much as possible. However, since the task requires a demo for measuring fps most of the solution consists of Python scripts. 
+In this README.md you will find the solutions steps that were taken while solving the given problems in the task and documentation of how to run it yourself. I wanted to avoid spagetti code, therefore, I tried to use OOP paradigm as much as possible. However, since the task requires a demo for measuring fps most of the solution consists of Python scripts. 
+
+# Documentation
+This documentation is prepared for Google Colab. 
+
+1. Please change your runtime to one of the GPUs. 
+
+2. Load the Drive helper and mount
+'''
+from google.colab import drive
+drive.mount('/content/drive')
+'''
+
+3. Clone repository and install the requirements.txt
+'''
+%cd drive/MyDrive/
+!git clone https://github.com/oykusahin/interview  # clone
+%cd interview
+%pip install -r requirements.txt  # install
+'''
+
+4. Check if the requirements were successfully installed.
+'''
+import ultralytics
+ultralytics.checks()
+'''
+
+5. Install the dataset.
+'''
+!pip install roboflow
+
+from roboflow import Roboflow
+rf = Roboflow(api_key="p7f9t0BAWMr0hJ2CotcP")
+project = rf.workspace("wasteer").project("pallets-0mhou")
+dataset = project.version(2).download("yolov8")
+'''
+
+6. Make sure you are using GPU.
+'''
+!nvidia-smi
+'''
+
+7. Run the code for simple demo.
+'''
+!python main.py
+'''
 
 ### Steps:
 
@@ -19,6 +64,8 @@ In this README.md you will find the solutions steps that were taken while solvin
 The initial step I take when starting a computer vision assignment is to understand the task by analyzing the dataset and research for the existing work. 
 
 When I analyzed the data.yaml file which came with the datasets itself, I saw that there were only one class and that was 'pallet'. The dataset was already seperated to train, test, valid groups.   
+
+YOLOv8 is recommended for computer vision projects due to its high accuracy, with the YOLOv8m model achieving a 50.2% mAP on COCO and outperforming YOLOv5 on the Roboflow 100 dataset. Its developer-friendly features, including a user-friendly CLI and a well-structured Python package, contribute to a seamless coding experience, and the growing community around YOLO ensures ample guidance and support from experts in computer vision.
 
 When I start looking for wooded pallet detection, I found a pre-trained weights for YOLOv8 from Roboflow web-site: https://blog.roboflow.com/logistics-object-detection-model/ . When I tested the pre-trained model I saw that it was working fine but still need some fine-tuning. Sample results from the pre-trained model:
 
@@ -82,11 +129,3 @@ The following can be done as a future work for fps improvement while maintaining
 4. Implementing dynamic batching during inference can optimize resource utilization, leading to improved throughput without sacrificing accuracy.
 5. Evaluating smaller YOLO variants for object detection may result in faster inference speeds while maintaining acceptable accuracy levels.
 6. Investigating CPU-specific optimizations, such as OpenBLAS or MKL, can potentially improve inference speed on CPU-based systems.
-
-# Documentation
-
-'''
-git clone https://github.com/oykusahin/interview  # clone
-cd interview
-pip install -r requirements.txt  # install
-'''
