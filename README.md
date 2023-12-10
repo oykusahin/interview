@@ -1,11 +1,11 @@
-# Wasteer Task
-This repository is created for the technical interview for Wasteer. The task description is as follows: 
+# Wasteer Technical Task
+This repository is created for Wasteer's technical interview. The task description is as follows: 
 
 - Develop and demonstrate a real-time pallet detection system using the provided dataset.
 - Balance the model’s speed and accuracy, with an emphasis on achieving high fps.
 - Document your approach and any challenges faced.
 
-In this README.md you will find the solutions steps that were taken while solving the problems in the given task. I wanted to avoid spagetti code, therefore, I tried to use OOP paradigm as much as possible. However, since the task requires a demo for the fps most of the solution consists of Python scripts. 
+In this README.md you will find the solutions steps that were taken while solving the given problems in the task. I wanted to avoid spagetti code, therefore, I tried to use OOP paradigm as much as possible. However, since the task requires a demo for measuring fps most of the solution consists of Python scripts. 
 
 ### Steps:
 
@@ -16,27 +16,27 @@ In this README.md you will find the solutions steps that were taken while solvin
 5. Future Work
 
 ## 1. Research:
-The initial step I take when starting an CV assignment is to understand the task by analyzing the dataset and research for the existing work. 
+The initial step I take when starting a computer vision assignment is to understand the task by analyzing the dataset and research for the existing work. 
 
-When I analyze the data.yaml file, I saw that there were only one class that is 'pallet'. The dataset was already seperated as train, test, val.   
+When I analyzed the data.yaml file which came with the datasets itself, I saw that there were only one class and that was 'pallet'. The dataset was already seperated to train, test, valid groups.   
 
-When I start looking for wooded pallet detection, I found a pre-trained weights for yolov8 from Roboflow web-site: https://blog.roboflow.com/logistics-object-detection-model/ . When I test the pretrained model I saw that it was working fine but still need some fine-tuning. Sample results from the pre-trained model:
+When I start looking for wooded pallet detection, I found a pre-trained weights for YOLOv8 from Roboflow web-site: https://blog.roboflow.com/logistics-object-detection-model/ . When I tested the pre-trained model I saw that it was working fine but still need some fine-tuning. Sample results from the pre-trained model:
 
 <p float="left">
     <img src="/images/sample_1.png" width="400">
     <img src="/images/sample_2.png" width="400">
 </p>
 
-As it can be seen from the sample images, the model detected also other classes such as forklift and person. 
+As it can be seen from the sample images, the model detected not only wooden pallet but also other classes such as forklift and person. 
 
 
 ## 2. Fine-Tuning:
-I used the pre-trained weighs and started a short training for 50 epocs. Following shows the training results:
+I used the pre-trained weighs and started a short training for 50 epochs. Following shows the training results:
 ![Training metrics.](/images/results.png "This image shows the training metrics.")
 
 ### There were three main reasons behind training the model again:
-1.  **Having an end-to-end model for specific class:** The pre-trained model has 20 classes and wooden pallets was one of them. Therefore, the output may need more post-processing to obtain specific class. Also, the loss function may focus on other classes during backpropogating which means there is a small possibility of imroving the performance for only one class.
-2. **Data augmentation**: The number of training data will be more in numbers because of adding data augmentation. ultralytics's mosaic augmentation known one of the most helpful one. So, I used it as well as the classical ones. 
+1.  **Having an end-to-end model for specific class:** The pre-trained model had 20 classes and wooden pallets was one of them. Therefore, the output may need more post-processing to obtain that specific class. Also, the loss function may focused on other classes during backpropogation which means there was a small possibility of improving the performance for the pallet class.
+2. **Data augmentation**: The number of training data will be more in numbers because of adding data augmentation. Ultralytics's mosaic augmentation known one of the most helpful one. So, I used it as well as the classical ones. 
 3. **Fine-tuning**: The distribution of the Wood Pallet class differs significantly from the original dataset, therefore, fine-tuning was essential.
 
 ## 3. Performance Test:
@@ -47,7 +47,7 @@ The performance of the pre-trained and fine-tuned model are as follows:
 | fine-tuned | right ba| right fo| right fo|
 
 ## 4. Improving FPS:
-FPS is very important when it comes to the real-life scenarios. One of the most popular way to improve FPS of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here, the fps results for M2 CPU, V100GPU and finally onnxruntime. 
+FPS is very important when it comes to the real-life scenarios. One of the most popular way to improve fps of a .pt model is to convert the model to .onnx and use onnxruntime for inferencing. Here, the fps results for M2 CPU, V100GPU and finally onnxruntime. 
 
 ### M2 CPU
 | model  | fps |
@@ -82,3 +82,11 @@ The following can be done as a future work for fps improvement while maintaining
 4. Implementing dynamic batching during inference can optimize resource utilization, leading to improved throughput without sacrificing accuracy.
 5. Evaluating smaller YOLO variants for object detection may result in faster inference speeds while maintaining acceptable accuracy levels.
 6. Investigating CPU-specific optimizations, such as OpenBLAS or MKL, can potentially improve inference speed on CPU-based systems.
+
+# Documentation
+
+'''
+git clone https://github.com/oykusahin/interview  # clone
+cd interview
+pip install -r requirements.txt  # install
+'''

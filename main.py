@@ -2,7 +2,9 @@ from yolov8.inference import onnx_inference as oinf
 from yolov8.inference import pt_inference as pinf
 from yolov8 import metrics
 
-PATH = '/content/drive/MyDrive/YOLOv8'
+import os
+
+PATH = os.getcwd()
 
 def calculate_accuracy():
     print("Calculating accuracy...")
