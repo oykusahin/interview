@@ -1,4 +1,4 @@
 /pallets/*
 /runs/*
-*.pt
-*.onnx
+/models/*.pt
+/models/*.onnx
