@@ -41,9 +41,9 @@ I used the pre-trained weighs and started a short training for 50 epocs. Followi
 
 ## 3. Performance Test:
 The performance of the pre-trained and fine-tuned model are as follows:
-| model    | Precision | Recall | mAP |
+| model    | Precision | Recall | F1 Score |
 | -------- |:---------:| :------:| :------:|
-| pre-trained| right fo| right fo| right fo|
+| pre-trained| 0.99 | 1.00| right 0.99|
 | fine-tuned | right ba| right fo| right fo|
 
 ## 4. Improving FPS:
