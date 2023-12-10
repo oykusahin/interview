@@ -32,7 +32,7 @@ import ultralytics
 ultralytics.checks()
 ```
 
-7. Install the dataset.
+6. Install the dataset.
 ```
 !pip install roboflow
 
@@ -42,12 +42,12 @@ project = rf.workspace(COMPANY_NAME).project(PROJECT_NAME)
 dataset = project.version(2).download("TYPE_NAME")
 ```
 
-6. Make sure you are using GPU.
+7. Make sure you are using GPU.
 ```
 !nvidia-smi
 ```
 
-7. Run the code for simple demo.
+8. Run the code for simple demo.
 ```
 !python main.py
 ```
